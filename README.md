@@ -1,162 +1,263 @@
-# YummyOS
+# Yumix
 
-**a custom operating system project**
+**an Arch-based Linux distro built around Hyprland**
 
 ok so...
 
-this repo has existed for a while, but i never really got around to actually building YummyOS.
+YummyOS started as me thinking i was gonna build an operating system from scratch.
 
-so i'm starting over properly.
+yeah.
 
-YummyOS is an experimental operating system project where i can learn how the pieces of an OS actually work instead of just making a themed Linux distro.
+we're not doing that anymore.
+
+instead, i'm building **Yumix** — an actual Linux distribution based on Arch, with Hyprland as the default desktop.
+
+not a custom kernel project.  
+not just a Hyprland rice.  
+not Arch with a wallpaper slapped on it.
+
+the goal is to make something that actually feels like its own distro.
+
+## what is Yumix?
+
+Yumix is a lightweight, customizable, FOSS-focused Linux distribution built on top of Arch Linux.
+
+the main desktop is **Hyprland**, with a setup that's meant to be clean, fast, minimal, and actually usable.
+
+underneath, it's still Arch:
+
+- Linux kernel
+- systemd
+- pacman
+- Arch packages/repos
+- rolling release model
+
+Yumix is basically me taking the parts of Linux i actually want and putting them together into one proper distro.
 
 ## current status
 
 **very early.**
 
-right now the goal is simple:
+right now i'm working toward the first real bootable Yumix ISO.
 
-> boot something that i actually wrote.
+the first big milestone is:
 
-The first milestone is a tiny x86 kernel that can boot through GRUB and write to the screen.
+> build the ISO → boot it in QEMU → get into Yumix → make sure it actually works.
 
-From there, YummyOS will grow piece by piece.
+don't expect a polished daily-driver yet lol.
 
-## roadmap
+## planned features
 
-### phase 1 — boot
+- Arch Linux base
+- Hyprland as the default desktop
+- Wayland
+- Waybar
+- Kitty
+- zsh
+- PipeWire + WirePlumber
+- XWayland
+- notifications
+- lock screen + idle management
+- graphical file manager
+- application launcher
+- browser
+- networking + Bluetooth
+- hardware detection
+- proper installer
+- Yumix system tools
+- customizable themes
+- official Yumix branding
+- reproducible ISO builds
 
-- [x] bootable kernel
-- [x] GRUB multiboot entry
-- [x] basic screen output
-- [ ] keyboard input
-- [ ] interrupts
-- [ ] timer
-- [ ] memory management
+## the desktop
 
-### phase 2 — kernel
+the default Yumix desktop is going for a pretty simple look:
 
-- [ ] physical memory manager
-- [ ] virtual memory
-- [ ] heap allocator
-- [ ] processes
-- [ ] basic scheduler
-- [ ] system calls
+- black / white
+- high contrast
+- minimal
+- clean
+- subtle transparency
+- subtle blur
+- not a giant pile of effects
+- no neon RGB gamer stuff
 
-### phase 3 — userspace
+i'll be making the official Yumix logo and default wallpaper myself.
 
-- [ ] filesystem
-- [ ] shell
-- [ ] basic commands
-- [ ] user programs
-- [ ] program loader
+those will be treated as actual distro branding instead of random placeholder art.
 
-### phase 4 — hardware
+## building Yumix
 
-- [ ] disk I/O
-- [ ] framebuffer
-- [ ] networking
-- [ ] USB/input
-- [ ] hardware detection
-
-### phase 5 — desktop
-
-- [ ] window system
-- [ ] compositor
-- [ ] graphical shell
-- [ ] applications
-
-none of these are promises that they're already implemented. they're just where i'd like to take the project.
-
-## building
-
-YummyOS currently targets **x86** and uses GRUB to load the kernel.
+Yumix uses **Archiso** to build the ISO.
 
 ### dependencies
 
-On an Arch-based system:
+on an Arch-based system:
 
 ```bash
-sudo pacman -S --needed base-devel grub xorriso
+sudo pacman -S --needed archiso qemu-desktop make
 ```
 
-You'll also need a C compiler capable of producing 32-bit freestanding binaries.
-
-### build
+### build the ISO
 
 ```bash
-make
+make iso
 ```
 
-This creates:
+the ISO should end up somewhere around:
 
 ```text
-build/yummyos.iso
+build/Yumix-0.1.0-x86_64.iso
 ```
 
-### run in QEMU
+### test it
 
 ```bash
 make run
 ```
 
-or:
-
-```bash
-qemu-system-i386 -cdrom build/yummyos.iso
-```
-
-No real hardware is required.
+QEMU is the main development/testing environment for now.
 
 ## project structure
 
+the repo is being organized around the actual distro instead of the old custom-kernel experiment:
+
 ```text
-YummyOS/
-├── src/
-│   ├── boot.s
-│   └── kernel.c
-├── grub/
-│   └── grub.cfg
+Yumix/
+├── assets/
+│   └── branding/
+├── profile/
+│   ├── packages.x86_64
+│   ├── profiledef.sh
+│   ├── pacman.conf
+│   └── airootfs/
+├── configs/
+│   ├── hypr/
+│   ├── waybar/
+│   ├── kitty/
+│   └── zsh/
+├── scripts/
+├── packages/
+├── tools/
+├── docs/
+├── tests/
 ├── Makefile
-├── linker.ld
-├── .gitignore
 └── README.md
 ```
 
-The project is intentionally tiny right now.
+this will change as Yumix gets bigger.
 
-As the kernel grows, the structure will be split into proper subsystems instead of turning into one giant pile of files.
+## roadmap
+
+### 1. foundation
+- [ ] clean up the old YummyOS stuff
+- [ ] set up the Archiso profile
+- [ ] get a reproducible ISO build working
+
+### 2. first ISO
+- [ ] boot in QEMU
+- [ ] live environment
+- [ ] networking
+- [ ] working terminal
+- [ ] working Hyprland session
+
+### 3. desktop
+- [ ] Hyprland configuration
+- [ ] Waybar
+- [ ] Kitty
+- [ ] launcher
+- [ ] notifications
+- [ ] lock screen
+- [ ] wallpaper
+- [ ] audio
+
+### 4. Yumix identity
+- [ ] official logo
+- [ ] official wallpaper
+- [ ] boot branding
+- [ ] desktop branding
+- [ ] theme system
+
+### 5. installer
+- [ ] keyboard layout
+- [ ] timezone
+- [ ] hostname
+- [ ] user setup
+- [ ] disk/filesystem setup
+- [ ] bootloader
+- [ ] optional encryption
+- [ ] safe destructive-operation warnings
+
+### 6. Yumix tools
+- [ ] yumix-system
+- [ ] yumix-update
+- [ ] yumix-settings
+- [ ] yumix-theme
+- [ ] yumix-info
+- [ ] yumix-doctor
+
+these only get added if they actually make Yumix better. i'm not trying to make 47 custom commands just because i can.
+
+### 7. packages + releases
+- [ ] Yumix package repo
+- [ ] reproducible release builds
+- [ ] checksums
+- [ ] GitHub releases
+- [ ] proper versioning
 
 ## philosophy
 
-YummyOS isn't supposed to be:
+Yumix should be an actual distro.
 
-- a KDE theme
-- an Arch installer with a different wallpaper
-- a Linux distribution with a bunch of preinstalled apps
+if someone downloads an ISO, boots it, and thinks:
 
-It might eventually have userspace tools and even a graphical desktop, but the interesting part is building the underlying system myself.
+> "oh, this is an actual Linux distro"
 
-The goal is to understand what is actually happening underneath the desktop.
+then we're doing it right.
+
+i don't want Yumix to just be:
+
+- a Hyprland config
+- a dotfiles repo
+- a themed Arch install
+- a custom wallpaper
+- a bunch of shell scripts
+
+those things can be part of Yumix, but they aren't the whole thing.
+
+## privacy
+
+Yumix is meant to stay simple and privacy-conscious.
+
+no:
+
+- mandatory accounts
+- telemetry
+- ads
+- subscriptions
+- weird background services
+- AI shoved into everything
+
+FOSS software is preferred whenever it makes sense.
 
 ## development
 
-For now, development happens primarily in QEMU.
+the first versions will be tested mostly in QEMU before i start recommending them for real hardware.
 
-I don't recommend testing experimental kernel code on your main machine.
+if something breaks:
 
-If something breaks:
+**that's what testing is for.**
 
-**good.**
-
-that's kind of the point.
+don't install early development builds on anything you actually care about.
 
 ## status
 
-YummyOS is experimental, incomplete, and very much a work in progress.
+**Yumix is very early and very much a work in progress.**
 
-don't install it on anything important.
+the goal isn't to pretend it's finished.
+
+the goal is to actually build it.
 
 ---
 
-**YummyOS — let's see how far this thing can go.**
+**Yumix Linux — Arch-based. Hyprland-powered. made by YUMMYFILES.**
