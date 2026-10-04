@@ -1,228 +1,162 @@
-<div align="center">
-
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:7B2CBF,100:4CC9F0&height=220&section=header&text=YummyOS&fontSize=60&fontColor=ffffff&animation=fadeIn&fontAlignY=38&desc=Your%20computer.%20Your%20desktop.%20Your%20rules.&descAlignY=58" width="100%"/>
-
-<br>
-
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=Share+Tech+Mono&weight=700&size=24&duration=3000&pause=1200&color=4CC9F0&center=true&vCenter=true&width=850&lines=Customize+everything.;Built+for+performance.;Privacy+without+the+nonsense.;Made+for+the+user.;Powered+by+KDE+Plasma.)](https://git.io/typing-svg)
-
-<br>
-
-![Stars](https://img.shields.io/github/stars/yummyfiles/YummyOS?style=for-the-badge&logo=github)
-![Forks](https://img.shields.io/github/forks/yummyfiles/YummyOS?style=for-the-badge&logo=github)
-![Issues](https://img.shields.io/github/issues/yummyfiles/YummyOS?style=for-the-badge)
-![License](https://img.shields.io/github/license/yummyfiles/YummyOS?style=for-the-badge)
-![Last Commit](https://img.shields.io/github/last-commit/yummyfiles/YummyOS?style=for-the-badge)
-
-<br><br>
-</div>
-
----
-
 # YummyOS
 
-> **The Linux distro that actually lets you use your computer the way *you* want.**
+**a custom operating system project**
 
-YummyOS is a KDE Plasma-based Linux distro built around three things:
+ok so...
 
-- Customization
-- Performance
-- Actually listening to the user
+this repo has existed for a while, but i never really got around to actually building YummyOS.
 
-I got tired of operating systems trying to tell me how I should use *my* computer, so I started making one that doesn't.
+so i'm starting over properly.
 
-No pointless bloat.
+YummyOS is an experimental operating system project where i can learn how the pieces of an OS actually work instead of just making a themed Linux distro.
 
-No weird restrictions.
+## current status
 
-No "you can't change that."
+**very early.**
 
-Just an OS that gets out of your way and lets you do your thing.
+right now the goal is simple:
 
----
+> boot something that i actually wrote.
 
-# Why YummyOS?
+The first milestone is a tiny x86 kernel that can boot through GRUB and write to the screen.
 
-Because your desktop should be **yours**.
+From there, YummyOS will grow piece by piece.
 
-Whether you're coding, gaming, editing videos, making music, or just browsing the web, YummyOS is built to stay fast while giving you the freedom to tweak pretty much everything.
+## roadmap
 
-If you can customize it...
+### phase 1 — boot
 
-...you probably can.
+- [x] bootable kernel
+- [x] GRUB multiboot entry
+- [x] basic screen output
+- [ ] keyboard input
+- [ ] interrupts
+- [ ] timer
+- [ ] memory management
 
----
+### phase 2 — kernel
 
-# Customize Literally Everything
+- [ ] physical memory manager
+- [ ] virtual memory
+- [ ] heap allocator
+- [ ] processes
+- [ ] basic scheduler
+- [ ] system calls
 
-KDE Plasma is already one of the most customizable desktops out there, and YummyOS leans all the way into that.
+### phase 3 — userspace
 
-Change stuff like:
+- [ ] filesystem
+- [ ] shell
+- [ ] basic commands
+- [ ] user programs
+- [ ] program loader
 
-- Themes
-- Icons
-- Fonts
-- Cursors
-- Panels
-- Widgets
-- Wallpapers
-- Window Effects
-- Accent Colors
-- Layouts
-- Animations
+### phase 4 — hardware
 
-Go minimal.
+- [ ] disk I/O
+- [ ] framebuffer
+- [ ] networking
+- [ ] USB/input
+- [ ] hardware detection
 
-Go RGB gamer mode.
+### phase 5 — desktop
 
-Make it look like Windows.
+- [ ] window system
+- [ ] compositor
+- [ ] graphical shell
+- [ ] applications
 
-Make it look like macOS.
+none of these are promises that they're already implemented. they're just where i'd like to take the project.
 
-Make it look like something from 2003.
+## building
 
-I don't care.
+YummyOS currently targets **x86** and uses GRUB to load the kernel.
 
-It's your desktop.
+### dependencies
 
----
+On an Arch-based system:
 
-# Fast
+```bash
+sudo pacman -S --needed base-devel grub xorriso
+```
 
-Nobody likes waiting.
+You'll also need a C compiler capable of producing 32-bit freestanding binaries.
 
-YummyOS is built to stay quick and responsive without eating all your RAM for no reason.
+### build
 
-Expect things like:
+```bash
+make
+```
 
-- Faster boot times
-- Lower RAM usage
-- Optimized startup
-- Smooth desktop performance
-- Less background junk
-- More CPU for the stuff you actually care about
+This creates:
 
----
+```text
+build/yummyos.iso
+```
 
-# Privacy
+### run in QEMU
 
-Your computer is your computer.
+```bash
+make run
+```
 
-YummyOS isn't interested in spying on you.
+or:
 
-- No ads
-- No telemetry
-- No creepy tracking
-- No nonsense
+```bash
+qemu-system-i386 -cdrom build/yummyos.iso
+```
 
----
+No real hardware is required.
 
-# Comes With What You Actually Need
+## project structure
 
-Instead of making you install fifty things after setup, YummyOS includes the basics so you can actually start using your computer.
+```text
+YummyOS/
+├── src/
+│   ├── boot.s
+│   └── kernel.c
+├── grub/
+│   └── grub.cfg
+├── Makefile
+├── linker.ld
+├── .gitignore
+└── README.md
+```
 
-- Web Browser
-- Office Suite
-- Media Player
-- Archive Manager
-- Screenshot Tool
-- Terminal
-- Software Center
-- File Manager
-- System Utilities
+The project is intentionally tiny right now.
 
-Install it.
+As the kernel grows, the structure will be split into proper subsystems instead of turning into one giant pile of files.
 
-Boot it.
+## philosophy
 
-Start using it.
+YummyOS isn't supposed to be:
 
----
+- a KDE theme
+- an Arch installer with a different wallpaper
+- a Linux distribution with a bunch of preinstalled apps
 
-# Made For Everyone
+It might eventually have userspace tools and even a graphical desktop, but the interesting part is building the underlying system myself.
 
-Whether you're:
+The goal is to understand what is actually happening underneath the desktop.
 
-- Developers
-- Gamers
-- Creators
-- Students
-- Windows users switching to Linux
-- Or just someone who likes Linux
+## development
 
-YummyOS is made for you.
+For now, development happens primarily in QEMU.
 
----
+I don't recommend testing experimental kernel code on your main machine.
 
-# Philosophy
+If something breaks:
 
-Computers should adapt to people.
+**good.**
 
-People shouldn't have to adapt to computers.
+that's kind of the point.
 
-That's basically the entire idea behind YummyOS.
+## status
 
-Give users choices.
+YummyOS is experimental, incomplete, and very much a work in progress.
 
-Keep it fast.
-
-Don't add junk nobody asked for.
-
-Make customization easy.
-
-And don't get in the user's way.
-
----
-
-# Roadmap
-
-- [ ] First public release
-- [ ] Custom YummyOS branding
-- [ ] Performance tweaks
-- [ ] KDE customization presets
-- [ ] Built-in update utility
-- [ ] Gaming optimizations
-- [ ] Better installer
-- [ ] More themes
-- [ ] More wallpapers
-- [ ] Community contributions
+don't install it on anything important.
 
 ---
 
-# Contributing
-
-Found a bug?
-
-Have an idea?
-
-Want to help make YummyOS even better?
-
-Open an issue or submit a pull request.
-
-Every contribution helps.
-
----
-
-# Support
-
-If you like YummyOS, drop a star on GitHub.
-
-Seriously, it helps more than you think.
-
----
-
-<div align="center">
-
-## YummyOS
-
-### Your computer.
-
-### Your desktop.
-
-### Your rules.
-
-<br>
-
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:4CC9F0,100:7B2CBF&height=120&section=footer"/>
-
-</div>
+**YummyOS — let's see how far this thing can go.**
