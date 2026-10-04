@@ -1,8 +1,6 @@
 <div align="center">
 
-<a href="https://github.com/yummyfiles/Yumix">
-  <img src="https://readme-typing-svg.demolab.com?font=Share+Tech+Mono&size=42&duration=2800&pause=900&color=FFFFFF&center=true&vCenter=true&width=700&height=80&lines=YUMIX;ARCH+%2B+HYPRLAND;A+LINUX+DISTRO+BY+YUMMYFILES" alt="Yumix animated title" />
-</a>
+<img src="./assets/branding/yumix-readme.svg" width="900" alt="Yumix — Arch + Hyprland" />
 
 <p>
   <strong>an Arch-based Linux distro built around Hyprland</strong>
@@ -17,7 +15,7 @@
 
 <br>
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=000000&height=100&section=header&text=&fontColor=ffffff" width="100%" alt="" />
+<img src="./assets/branding/yumix-divider.svg" width="100%" alt="" />
 
 </div>
 
@@ -39,7 +37,7 @@ the goal is to make something that actually feels like its own distro.
 
 <div align="center">
 
-<img src="https://readme-typing-svg.demolab.com?font=Share+Tech+Mono&size=20&duration=3200&pause=1200&color=FFFFFF&center=true&vCenter=true&width=650&height=45&lines=build+it.;boot+it.;break+it.;fix+it.;repeat." alt="Build it. Boot it. Break it. Fix it. Repeat." />
+<strong>build it → boot it → break it → fix it → repeat.</strong>
 
 </div>
 
@@ -194,7 +192,7 @@ QEMU is the main development/testing environment for now.
 
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=rect&color=000000&height=2&section=header" width="90%" alt="" />
+<img src="./assets/branding/yumix-divider.svg" width="90%" alt="" />
 
 <sub>build → boot → test → break → fix → repeat</sub>
 
@@ -235,7 +233,7 @@ this will change as Yumix gets bigger.
 
 <div align="center">
 
-<img src="https://readme-typing-svg.demolab.com?font=Share+Tech+Mono&size=22&duration=3000&pause=1000&color=FFFFFF&center=true&vCenter=true&width=700&height=50&lines=FOUNDATION;FIRST+ISO;DESKTOP;YUMIX+IDENTITY;INSTALLER;TOOLS;PACKAGES+%2B+RELEASES" alt="Yumix roadmap animation" />
+<strong>FOUNDATION → FIRST ISO → DESKTOP → IDENTITY → INSTALLER → TOOLS → RELEASES</strong>
 
 </div>
 
@@ -369,7 +367,7 @@ the goal is to actually build it.
 
 <br>
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=000000&height=120&section=footer" width="100%" alt="" />
+<img src="./assets/branding/yumix-divider.svg" width="100%" alt="" />
 
 ### **Yumix Linux**
 
